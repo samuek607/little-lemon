@@ -11,7 +11,7 @@ import com.example.littlelemon.data.OnboardingScreen
 import com.example.littlelemon.data.ProfileScreen
 
 @Composable
-fun Navigation(sharedPreferences: SharedPreferences) {
+fun Navigation(sharedPreferences: SharedPreferences, database: AppDatabase) {
     val navController = rememberNavController()
     val loggedIn = sharedPreferences.getBoolean("LoggedIn", false)
     val startScreen = if (loggedIn){
@@ -25,7 +25,7 @@ fun Navigation(sharedPreferences: SharedPreferences) {
             Onboarding(navController, sharedPreferences)
         }
         composable(HomeScreen.route){
-            Home(navController)
+            Home(navController, database)
         }
         composable(ProfileScreen.route){
             Profile(navController, sharedPreferences)
